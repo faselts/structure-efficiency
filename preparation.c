@@ -113,7 +113,11 @@ void arr_e(int* num_d,int *num_origin_d,int dnum_int){
 //----------------------------------------------------------
 struct List* insert(struct List *Keylist,int num_origin_d){
 	struct List* t=(struct List*)malloc(sizeof(struct List));
-	struct List* origin;
+	t->num=num_origin_d;
+	t->next=Keylist;
+	return t;
+	
+/*	struct List* origin;
 	t->num=num_origin_d;
 	origin=t;
 	if(Keylist==NULL){
@@ -126,7 +130,7 @@ struct List* insert(struct List *Keylist,int num_origin_d){
 	origin->next=NULL;
 	t->next=origin;
 	return Keylist;
-}
+*/}
 struct List* ll_e(struct List *Keylist,int* num_origin_d,int dnum_int){
 	for(int i=0;i<dnum_int;i++){
 		Keylist=insert(Keylist,num_origin_d[i]);
@@ -152,15 +156,19 @@ struct nodehash** inserthash(struct nodehash** chain, int value){
 	int key=value%size;
 	if(chain[key]==NULL){
 		chain[key]=newNodehash;
+		return chain;
 	}
 	else{
 		struct nodehash* temphash=chain[key];
-		while(temphash->next){
+		struct nodehash* tempano=chain[key]->next;
+		newNodehash->next=tempano;
+		temphash->next=newNodehash;
+		return chain;
+/*		while(temphash->next){
 			temphash=temphash->next;
 		}
 		temphash->next=newNodehash;
-	}
-	return chain;
+*/	}
 }
 void hash_e(struct nodehash** chain,int* num_origin_d,int dnum_int){
 	for(int i=0;i<dnum_int;i++){

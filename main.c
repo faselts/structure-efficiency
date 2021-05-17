@@ -100,38 +100,54 @@ int main(int argc,char **argv){
 		copy_q(num_q,num_origin_q,qnum_int);
 		gettimeofday(&start_bst,NULL);
 		root=bst_e(root,num_origin_d,dnum_int);
+		gettimeofday(&end_bst,NULL);
+		differ_bst=1000000*(end_bst.tv_sec-start_bst.tv_sec)+end_bst.tv_usec-start_bst.tv_usec;
+		printf("bst_e: %f sec\n",differ_bst/1000000.0);
+		gettimeofday(&start_bst,NULL);
 		bst_q(root,num_origin_q,qnum_int);
 		gettimeofday(&end_bst,NULL);
 		differ_bst=1000000*(end_bst.tv_sec-start_bst.tv_sec)+end_bst.tv_usec-start_bst.tv_usec;
-		printf("bst: %f sec\n",differ_bst/1000000.0);
+		printf("bst_q: %f sec\n",differ_bst/1000000.0);
 	
 	}
 	if(bs==True){
 		copy_q(num_q,num_origin_q,qnum_int);
 		gettimeofday(&start_bs,NULL);
 		bs_e(num_d,num_origin_d,dnum_int);
+		gettimeofday(&end_bs,NULL);
+		differ_bs=1000000*(end_bs.tv_sec-start_bs.tv_sec)+end_bs.tv_usec-start_bs.tv_usec;
+		printf("bs_e: %f sec\n",differ_bs/1000000.0);
+		gettimeofday(&start_bs,NULL);
 		bs_q(num_d,num_q,dnum_int,qnum_int);
 		gettimeofday(&end_bs,NULL);
 		differ_bs=1000000*(end_bs.tv_sec-start_bs.tv_sec)+end_bs.tv_usec-start_bs.tv_usec;
-		printf("bs: %f sec\n",differ_bs/1000000.0);
+		printf("bs_q: %f sec\n",differ_bs/1000000.0);
 	}
 	if(arr==True){
 		copy_q(num_q,num_origin_q,qnum_int);
 		gettimeofday(&start_arr,NULL);
 		arr_e(num_d,num_origin_d,dnum_int);
+		gettimeofday(&end_arr,NULL);
+		differ_arr=1000000*(end_arr.tv_sec-start_arr.tv_sec)+end_arr.tv_usec-start_arr.tv_usec;
+		printf("arr_e: %f sec\n",differ_arr/1000000.0);
+		gettimeofday(&start_arr,NULL);
 		arr_q(num_d,num_q,dnum_int,qnum_int);
 		gettimeofday(&end_arr,NULL);
 		differ_arr=1000000*(end_arr.tv_sec-start_arr.tv_sec)+end_arr.tv_usec-start_arr.tv_usec;
-		printf("arr: %f sec\n",differ_arr/1000000.0);
+		printf("arr_q: %f sec\n",differ_arr/1000000.0);
 	}
 	if(ll==True){
 		copy_q(num_q,num_origin_q,qnum_int);
 		gettimeofday(&start_ll,NULL);
 		Keylist=ll_e(Keylist,num_origin_d,dnum_int);
+		gettimeofday(&end_ll,NULL);
+		differ_ll=1000000*(end_ll.tv_sec-start_ll.tv_sec)+end_ll.tv_usec-start_ll.tv_usec;
+		printf("ll_e: %f sec\n",differ_ll/1000000.0);
+		gettimeofday(&start_ll,NULL);
 		ll_q(Keylist,num_q,qnum_int);
 		gettimeofday(&end_ll,NULL);
 		differ_ll=1000000*(end_ll.tv_sec-start_ll.tv_sec)+end_ll.tv_usec-start_ll.tv_usec;
-	printf("ll: %f sec\n",differ_ll/1000000.0);
+		printf("ll_q: %f sec\n",differ_ll/1000000.0);
 	}
 	if(hash==True){
 		copy_q(num_q,num_origin_q,qnum_int);
@@ -141,19 +157,15 @@ int main(int argc,char **argv){
 		}
 		gettimeofday(&start_hash,NULL);
 		hash_e(chain,num_origin_d,dnum_int);
-		hash_q(chain,num_q,qnum_int);
-/*		for(int i=0;i<size;i++){
-		struct nodehash* temphash=chain[i];
-		printf("chain[%d]-->",i);
-		while(temphash){
-			printf("%d-->",temphash->data);
-			temphash=temphash->next;
-		}
-		printf("NULL\n");
-	}
-*/		gettimeofday(&end_hash,NULL);
+		gettimeofday(&end_hash,NULL);
+//		printhash(chain);
 		differ_hash=1000000*(end_hash.tv_sec-start_hash.tv_sec)+end_hash.tv_usec-start_hash.tv_usec;
-		printf("hash: %f sec\n",differ_hash/1000000.0);
+		printf("hash_e: %f sec\n",differ_hash/1000000.0);
+		gettimeofday(&start_hash,NULL);
+		hash_q(chain,num_q,qnum_int);
+		gettimeofday(&end_hash,NULL);
+		differ_hash=1000000*(end_hash.tv_sec-start_hash.tv_sec)+end_hash.tv_usec-start_hash.tv_usec;
+		printf("hash_q: %f sec\n",differ_hash/1000000.0);
 
 	}
 }

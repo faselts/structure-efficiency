@@ -23,4 +23,5 @@ struct nodehash{
 	int data;
 	struct nodehash *next;
 };
+void printhash(struct nodehash**);
 #define size 10
